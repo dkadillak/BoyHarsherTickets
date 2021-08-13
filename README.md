@@ -9,7 +9,7 @@
 **I specifically want to know when the following span**
 > ![span](./disabled_span.png)
 
-**is no longer disabled because that should mean i'm able to buy tickets! **
+**is no longer disabled because that should mean i'm able to buy tickets!**
 
-To avoid my scraper getting blocked i'll be sending requests at a random time interval between 12-33 minutes for 2 hours every night after midnight EST until the tickets go on sale
+*To avoid my scraper getting blocked i'll be sending requests at a random time interval between 12-33 minutes for 2 hours every night after midnight EST until the tickets go on sale*
 
