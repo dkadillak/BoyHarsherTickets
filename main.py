@@ -11,18 +11,24 @@ def fetch_webpage():
     return page
 
 
-def ticket_alert():
-    old_page = open(tix_not_on_sale_page, 'r').read()
-    soup = BeautifulSoup(old_page, 'html.parser')
+def find_span(raw_html):
+    soup = BeautifulSoup(raw_html, 'html.parser')
     span_elements = soup.find_all("span")
     for span in span_elements:
         if "On Sale Now" in span:
             return span
+    return None
 
 
+def is_on_sale():
+    new_page = fetch_webpage()
+    new_page_span = find_span(new_page)
+    
+    return 'disabled' not in str(new_page_span)
 
+def ping_for_tickets():
 
 
 
 if __name__== '__main__':
-    print(ticket_alert())
+    print(is_on_sale())
