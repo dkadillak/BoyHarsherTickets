@@ -1,6 +1,6 @@
 # BoyHarsherTickets
 
-*This is a little web scraper that will alert me via email and text when tickets go on sale for this Boy Harsher concert I want to go to!*
+*This is a little web scraper that will alert me via email when tickets go on sale for this Boy Harsher concert I want to go to!*
 
 ## General Concept
 **Here's the ticket website:**
@@ -30,6 +30,10 @@
 - cheap ($5/month)
 - already has the modules and version of python I need
 - easy to schedule chron jobs
+
+
+### About the emailing function
+- the 'send_mail' function uses a gmail that does not have duel authentication and has the 'Access for less secure apps setting' turned on so I can use python to send emails. For security puruposes I created a dummy email account just for sending mail with python
 
 
 
