@@ -12,14 +12,14 @@
 **is no longer disabled because that should mean i'm able to buy tickets!**
 
 
-## What i'm using to host and run the scraping chron job
+## What i'm using to host and run the web scraping chron job
 *Python Anywhere*
 > ![python anywhere](./python_anywhere.png)
 
 
 *Scheduled Checks*
 
-| time | reasoning |
+| time (MST) | reasoning |
 | ---- | --------- |
 | 8 am | when i wake up |
 | 4 pm | random middle of the day check|
