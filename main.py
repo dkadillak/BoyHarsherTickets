@@ -1,8 +1,9 @@
 from urllib.request import Request, urlopen
 import os
+from datetime import datetime
 from bs4 import BeautifulSoup
+from emailSender import send_mail
 
-tix_not_on_sale_page =  os.path.join(os.getcwd(),'tickets_html.txt')
 tickets_url = r'https://dice.fm/partner/bk-made-llc-dba-brooklyn-made-presents/event/bk39x-boy-harsher-31st-oct-brooklyn-made-new-york-tickets'
 
 def fetch_webpage():
@@ -23,12 +24,18 @@ def find_span(raw_html):
 def is_on_sale():
     new_page = fetch_webpage()
     new_page_span = find_span(new_page)
-    
-    return 'disabled' not in str(new_page_span)
+    time = datetime.now().strftime('%d-%m-%Y @ %H:%M')
 
-def ping_for_tickets():
+    if new_page_span is None:
+        send_mail('you should probably check it out', f'Something seems wrong with scraper   [{time}]')
 
+    elif 'disabled' in str(new_page_span):
+        send_mail('get em next time champ', f'Bad news :(   [{time}]')
+
+    else:
+        message = f'Tickets are on sale, go buy! \n \n {tickets_url}'
+        send_mail(message, f"TICKETS ARE ON SALE, I REPEAT TICKETS ARE ON SALE   [{time}]")
 
 
 if __name__== '__main__':
-    print(is_on_sale())
+    is_on_sale()

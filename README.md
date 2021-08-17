@@ -11,5 +11,25 @@
 
 **is no longer disabled because that should mean i'm able to buy tickets!**
 
-*To avoid my scraper getting blocked i'll be sending requests at a random time interval between 12-33 minutes for 2 hours every night after midnight EST until the tickets go on sale*
+
+## What i'm using to host and run the scraping chron job
+*Python Anywhere*
+> ![python anywhere](./python_anywhere.png)
+
+
+*Scheduled Checks*
+
+| time | reasoning |
+| ---- | --------- |
+| 8 am | when i wake up |
+| 4 pm | random middle of the day check|
+| 5:05 pm |when show is scheduled to start|
+|12:05 am | ¯\\_(ツ)_/¯ why not |
+
+### why am I using python anywhere?
+- cheap ($5/month)
+- already has the modules and version of python I need
+- easy to schedule chron jobs
+
+
 
