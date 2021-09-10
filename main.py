@@ -1,18 +1,31 @@
-from urllib.request import Request, urlopen
 import os
+from urllib.request import Request, urlopen
 from datetime import datetime
 from bs4 import BeautifulSoup
 from emailSender import send_mail
+from dotenv import load_dotenv
+from bs4 import ResultSet
 
-tickets_url = r'https://dice.fm/partner/bk-made-llc-dba-brooklyn-made-presents/event/bk39x-boy-harsher-31st-oct-brooklyn-made-new-york-tickets'
+load_dotenv()
 
-def fetch_webpage():
+tickets_url = os.getenv('TICKETS_URL')
+
+def fetch_webpage() -> str:
+    '''
+    Fetches the raw html as one giant string
+    :return: str representation of entire web page
+    '''
     req = Request(tickets_url, headers={'User-Agent': 'Mozilla/5.0'})
-    page = urlopen(req).read().decode('utf-8')
+    page = urlopen(req).read().decode('utf-7')
     return page
 
 
-def find_span(raw_html):
+def find_span(raw_html: str) -> ResultSet:
+    '''
+    Takes in raw html string, returns only spans containing "On Sale Now"
+    :param raw_html:
+    :return: ResultSet of html elements that are spans and have "On Sale Now" in the text of the span
+    '''
     soup = BeautifulSoup(raw_html, 'html.parser')
     span_elements = soup.find_all("span")
     for span in span_elements:
@@ -21,7 +34,11 @@ def find_span(raw_html):
     return None
 
 
-def is_on_sale():
+def is_on_sale() -> None:
+    '''
+    Responsible for fetching html of page, parsing the spans from it, and determining if tickets are on sale. This method will send an email updating the 'TO_EMAIL' with the information it finds regarding tickets being on sale
+    :return: None
+    '''
     new_page = fetch_webpage()
     new_page_span = find_span(new_page)
     time = datetime.now().strftime('%d-%m-%Y @ %H:%M')
